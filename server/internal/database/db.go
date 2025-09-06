@@ -31,3 +31,11 @@ func ConnectDB(cfg config.Config) *gorm.DB {
 	log.Println("Database connected successfully")
 	return db
 }
+
+func CloseDB(db *gorm.DB) error {
+	sqlDB, err := db.DB()
+	if err != nil {
+		return err
+	}
+	return sqlDB.Close()
+}

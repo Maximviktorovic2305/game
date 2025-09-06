@@ -25,7 +25,7 @@ export default function PrizeChart({ currentLevel }: PrizeChartProps) {
 		<div className='h-full flex w-fit flex-col justify-center'>
 			{[...PRIZES].reverse().map((prize) => {
 				const isCurrent = prize.level === currentLevel
-				const isSafe = prize.level <= 5 || prize.level === 10
+				const isSafe = prize.level === 5 || prize.level === 10 || prize.level === 15
 
 				return (
 					<div

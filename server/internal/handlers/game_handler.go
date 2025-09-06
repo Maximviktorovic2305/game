@@ -140,3 +140,18 @@ func (h *GameHandler) GetLeaderboard(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, sessions)
 }
+
+// GetSession retrieves a game session by ID
+func (h *GameHandler) GetSession(c echo.Context) error {
+	sessionID, err := strconv.ParseUint(c.Param("sessionID"), 10, 32)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid session ID"})
+	}
+
+	session, err := h.service.GetSessionByID(uint(sessionID))
+	if err != nil {
+		return c.JSON(http.StatusNotFound, map[string]string{"error": "Session not found"})
+	}
+
+	return c.JSON(http.StatusOK, session)
+}

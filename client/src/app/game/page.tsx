@@ -8,6 +8,7 @@ import {
 	useFiftyFiftyLifeline,
 	useAudienceLifeline,
 	useCallLifeline,
+	useQuitGame,
 } from '@/lib/hooks/useGameSession'
 import { GameSession, Question, Option } from '@/types'
 import QuestionCard from '@/components/QuestionCard'
@@ -37,6 +38,7 @@ export default function GamePage() {
 		useFiftyFiftyLifeline()
 	const { mutate: triggerAudience, data: audienceData } = useAudienceLifeline()
 	const { mutate: triggerCall, data: callData } = useCallLifeline()
+	const { mutate: quitGame } = useQuitGame()
 
 	// Start a new game when the component mounts
 	useEffect(() => {
@@ -146,8 +148,14 @@ export default function GamePage() {
 	}
 
 	const handleQuit = () => {
-		// In a real implementation, you would call the quit API
-		setShowGameOver(true)
+		if (!gameSession) return
+
+		quitGame(gameSession.id, {
+			onSuccess: (data) => {
+				setGameSession(data)
+				setShowGameOver(true)
+			},
+		})
 	}
 
 	// SVG Icons for Lifelines
@@ -294,8 +302,15 @@ export default function GamePage() {
 						<h2 className='text-xl font-bold text-blue-400'>
 							Вопрос {gameSession.current_level}
 						</h2>
-						<div className='text-lg font-bold text-white'>
-							Счет: ${gameSession.score.toLocaleString()}
+						<div className='flex items-center space-x-4'>
+							<div className='text-lg font-bold text-white'>
+								Счет: ${gameSession.score.toLocaleString()}
+							</div>
+							<button
+								onClick={handleQuit}
+								className='bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded-full text-sm'>
+								Завершить игру
+							</button>
 						</div>
 					</div>
 

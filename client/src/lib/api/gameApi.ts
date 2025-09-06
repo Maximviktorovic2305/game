@@ -16,6 +16,15 @@ export const startGame = async (): Promise<StartGameResponse> => {
 	return response.data
 }
 
+export const getGameSession = async (
+	sessionId: number,
+): Promise<GameSession> => {
+	const response = await apiClient.get<GameSession>(
+		`/game/session/${sessionId}`,
+	)
+	return response.data
+}
+
 export const getNextQuestion = async (level: number) => {
 	const response = await apiClient.get(`/questions/next?level=${level}`)
 	return response.data

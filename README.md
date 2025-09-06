@@ -1,14 +1,15 @@
-# Who Wants to Be a Millionaire?
+# Who Wants to Be a Millionaire? (Кто хочет стать миллионером?)
 
-A web-based implementation of the famous quiz game "Who Wants to Be a Millionaire?" built with Next.js, Go, and PostgreSQL.
+A web-based implementation of the famous quiz game "Who Wants to Be a Millionaire?" built with Next.js, Go, and PostgreSQL. The entire application has been translated to Russian and populated with 150 Russian questions.
 
 ## Features
 
-- 15 challenging questions to answer
-- Three lifelines: 50/50, Ask the Audience, and Phone a Friend
+- 15 challenging questions to answer in Russian
+- Three lifelines: 50/50, Ask the Audience, and Phone a Friend (all translated to Russian)
 - Prize ladder with checkpoints at question 5 and 10
 - Leaderboard to track top scores
 - Responsive design that works on all devices
+- Full backend integration with no mock data
 
 ## Technologies Used
 
@@ -49,7 +50,22 @@ A web-based implementation of the famous quiz game "Who Wants to Be a Millionair
 docker-compose up -d
 ```
 
-### 2. Start the Backend Server
+### 2. Seed the Database with Russian Questions
+
+The database has been populated with 150 Russian questions (10 for each level). You can use either Docker or manual seeding:
+
+**Option 1: Using Docker (recommended)**
+```bash
+docker-compose up -d
+```
+
+**Option 2: Manual seeding**
+```bash
+cd server
+go run seed_russian_questions.go
+```
+
+### 3. Start the Backend Server
 
 ```bash
 cd server
@@ -57,7 +73,7 @@ go mod tidy
 go run cmd/main.go
 ```
 
-### 3. Start the Frontend Application
+### 4. Start the Frontend Application
 
 ```bash
 cd client
@@ -66,7 +82,7 @@ npm run dev
 ```
 
 The application will be available at:
-- Frontend: http://localhost:3000
+- Frontend: http://localhost:3000 (or another available port if 3000 is in use)
 - Backend API: http://localhost:8080
 
 ## Game Rules

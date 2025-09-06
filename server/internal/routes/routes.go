@@ -36,6 +36,7 @@ func SetupRoutes(db *gorm.DB) *echo.Echo {
 	e.POST("/api/game/lifeline/audience", gameHandler.UseAudience)
 	e.POST("/api/game/lifeline/call", gameHandler.UseCall)
 	e.POST("/api/game/quit/:sessionID", gameHandler.QuitGame)
+	e.GET("/api/game/session/:sessionID", gameHandler.GetSession)
 	e.GET("/api/leaderboard", gameHandler.GetLeaderboard)
 
 	return e

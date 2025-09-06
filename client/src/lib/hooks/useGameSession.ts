@@ -1,6 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
 	startGame,
+	getGameSession,
 	getNextQuestion,
 	answerQuestion,
 	useFiftyFifty as apiUseFiftyFifty,
@@ -9,7 +10,6 @@ import {
 	quitGame,
 	getLeaderboard,
 } from '@/lib/api/gameApi'
-import { LeaderboardEntry } from '@/types'
 
 export const useStartGame = () => {
 	const queryClient = useQueryClient()
@@ -27,9 +27,8 @@ export const useGameSession = (sessionId: number | null) => {
 	return useQuery({
 		queryKey: ['gameSession', sessionId],
 		queryFn: async () => {
-			// In a real app, you would fetch the session from the API
-			// For now, we're just using the cached data
-			return null
+			if (!sessionId) return null
+			return getGameSession(sessionId)
 		},
 		enabled: !!sessionId,
 	})
