@@ -22,7 +22,7 @@ interface PrizeChartProps {
 
 export default function PrizeChart({ currentLevel }: PrizeChartProps) {
 	return (
-		<div className='bg-black/30 backdrop-blur-sm rounded-xl p-6'>
+		<div className='bg-black/30 backdrop-blur-sm rounded-xl p-6 min-h-[600px]'>
 			<h3 className='text-xl font-bold text-white mb-4 text-center'>
 				Prize Chart
 			</h3>

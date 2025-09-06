@@ -16,7 +16,7 @@ export default function LifelinePanel({
 	callUsed,
 }: LifelinePanelProps) {
 	return (
-		<div className='bg-black/30 backdrop-blur-sm rounded-xl p-6'>
+		<div className='bg-black/30 backdrop-blur-sm rounded-xl p-6 min-h-[180px]'>
 			<h3 className='text-xl font-bold text-white mb-4'>Lifelines</h3>
 
 			<div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
