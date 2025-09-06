@@ -18,14 +18,16 @@ func ConnectDB(cfg config.Config) *gorm.DB {
 		log.Fatal("Failed to connect to database:", err)
 	}
 
-	log.Println("Database connected successfully")
-	return db
-}
-
-func CloseDB(db *gorm.DB) error {
+	// Enable UTF-8 support for Russian text
 	sqlDB, err := db.DB()
 	if err != nil {
-		return err
+		log.Fatal("Failed to get database instance:", err)
 	}
-	return sqlDB.Close()
+
+	// Set connection parameters for UTF-8 support
+	sqlDB.SetMaxIdleConns(10)
+	sqlDB.SetMaxOpenConns(100)
+
+	log.Println("Database connected successfully")
+	return db
 }

@@ -1,18 +1,43 @@
-package database
+package main
 
 import (
+	"fmt"
+	"log"
 	"server/internal/models"
 
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
 
-func SeedQuestions(db *gorm.DB) error {
-	// Check if questions already exist
-	var count int64
-	db.Model(&models.Question{}).Count(&count)
-	if count > 0 {
-		return nil // Questions already seeded
+func main() {
+	// Database connection string - adjust these values to match your database
+	dsn := "host=localhost user=postgres password=admin dbname=mill port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+
+	// Connect to database
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatal("Failed to connect to database:", err)
 	}
+
+	fmt.Println("Connected to database successfully")
+
+	// Run migrations to ensure tables exist
+	err = db.AutoMigrate(
+		&models.Question{},
+		&models.Option{},
+		&models.GameSession{},
+	)
+	if err != nil {
+		log.Fatal("Failed to run migrations:", err)
+	}
+
+	fmt.Println("Database migrations completed")
+
+	// Clear existing questions and options
+	db.Exec("DELETE FROM options")
+	db.Exec("DELETE FROM questions")
+
+	fmt.Println("Cleared existing questions and options")
 
 	// Define prize amounts for each level
 	prizes := []int{100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000}
@@ -2159,7 +2184,7 @@ func SeedQuestions(db *gorm.DB) error {
 	}
 
 	// Create questions and options
-	for _, qd := range questionsData {
+	for i, qd := range questionsData {
 		question := models.Question{
 			Text:  qd.Text,
 			Level: qd.Level,
@@ -2168,7 +2193,8 @@ func SeedQuestions(db *gorm.DB) error {
 
 		// Create the question first
 		if err := db.Create(&question).Error; err != nil {
-			return err
+			log.Printf("Error creating question %d: %v", i+1, err)
+			continue
 		}
 
 		// Create options for this question
@@ -2180,10 +2206,13 @@ func SeedQuestions(db *gorm.DB) error {
 				IsCorrect:  od.IsCorrect,
 			}
 			if err := db.Create(&option).Error; err != nil {
-				return err
+				log.Printf("Error creating option for question %d: %v", i+1, err)
+				continue
 			}
 		}
+
+		fmt.Printf("Added question %d: %s\n", i+1, qd.Text)
 	}
 
-	return nil
+	fmt.Println("Successfully seeded database with Russian questions!")
 }

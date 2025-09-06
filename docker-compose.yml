@@ -6,6 +6,7 @@ services:
       POSTGRES_DB: mill
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: admin
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
     ports:
       - "5432:5432"
     volumes:
