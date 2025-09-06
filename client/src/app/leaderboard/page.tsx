@@ -18,10 +18,10 @@ export default function LeaderboardPage() {
 		})) || []
 
 	return (
-		<div className='min-h-screen bg-gradient-to-b from-blue-900 to-purple-900 p-4'>
+		<div className='min-h-screen bg-gray-900 p-4'>
 			<div className='max-w-4xl mx-auto'>
 				<div className='text-center mb-8'>
-					<h1 className='text-3xl md:text-4xl font-bold text-yellow-400 mb-2'>
+					<h1 className='text-3xl md:text-4xl font-bold text-blue-400 mb-2'>
 						Leaderboard
 					</h1>
 					<p className='text-white'>
@@ -29,7 +29,7 @@ export default function LeaderboardPage() {
 					</p>
 				</div>
 
-				<div className='bg-black/30 backdrop-blur-sm rounded-xl p-6'>
+				<div className='bg-gray-800 rounded-xl p-6'>
 					{isLoading ? (
 						<div className='text-center py-12'>
 							<p className='text-white text-xl'>Loading leaderboard...</p>

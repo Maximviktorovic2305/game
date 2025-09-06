@@ -44,8 +44,10 @@ export default function GameOverModal({
 
 	return (
 		<div className='fixed inset-0 bg-black/70 flex items-center justify-center z-50'>
-			<div className='bg-white rounded-xl p-8 max-w-md w-full mx-4'>
-				<h2 className='text-3xl font-bold mb-4 text-center'>{title}</h2>
+			<div className='bg-gray-800 rounded-xl p-8 max-w-md w-full mx-4 border-2 border-blue-500'>
+				<h2 className='text-3xl font-bold mb-4 text-center text-white'>
+					{title}
+				</h2>
 				<p className={`text-2xl mb-6 text-center ${color}`}>{message}</p>
 
 				<div className='space-y-4'>
@@ -57,7 +59,7 @@ export default function GameOverModal({
 
 					<Link
 						href='/'
-						className='block w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-full transition-colors text-center'>
+						className='block w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition-colors text-center'>
 						Back to Home
 					</Link>
 				</div>

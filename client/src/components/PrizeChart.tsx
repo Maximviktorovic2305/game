@@ -22,35 +22,24 @@ interface PrizeChartProps {
 
 export default function PrizeChart({ currentLevel }: PrizeChartProps) {
 	return (
-		<div className='bg-black/30 backdrop-blur-sm rounded-xl p-6 min-h-[600px]'>
-			<h3 className='text-xl font-bold text-white mb-4 text-center'>
-				Prize Chart
-			</h3>
+		<div className='h-full flex w-fit flex-col justify-center'>
+			{[...PRIZES].reverse().map((prize) => {
+				const isCurrent = prize.level === currentLevel
+				const isSafe = prize.level <= 5 || prize.level === 10
 
-			<div className='space-y-2'>
-				{PRIZES.map((prize) => {
-					const isCurrent = prize.level === currentLevel
-					const isSafe = prize.level <= 5 || prize.level === 10
-
-					return (
-						<div
-							key={prize.level}
-							className={`
-                p-3 rounded-lg flex justify-between items-center
-                ${
-									isCurrent
-										? 'bg-yellow-500 text-black font-bold'
-										: isSafe
-										? 'bg-green-700 text-white'
-										: 'bg-blue-900 text-white'
-								}
-              `}>
-							<span>Question {prize.level}</span>
-							<span>${prize.amount.toLocaleString()}</span>
-						</div>
-					)
-				})}
-			</div>
+				return (
+					<div
+						key={prize.level}
+						className={`
+							py-1 px-4
+							${isCurrent ? 'text-yellow-500 font-bold' : ''}
+							${isSafe ? 'text-green-400' : 'text-white'}
+						`}
+					>
+						<span>${prize.amount.toLocaleString()}</span>
+					</div>
+				)
+			})}
 		</div>
 	)
 }

@@ -18,17 +18,17 @@ export default function LeaderboardTable({ sessions }: LeaderboardTableProps) {
 			<table className='w-full'>
 				<thead>
 					<tr className='border-b border-gray-700'>
-						<th className='text-left py-3 px-4 text-yellow-400'>Rank</th>
-						<th className='text-left py-3 px-4 text-yellow-400'>Score</th>
-						<th className='text-left py-3 px-4 text-yellow-400'>Status</th>
-						<th className='text-left py-3 px-4 text-yellow-400'>Date</th>
+						<th className='text-left py-3 px-4 text-blue-400'>Rank</th>
+						<th className='text-left py-3 px-4 text-blue-400'>Score</th>
+						<th className='text-left py-3 px-4 text-blue-400'>Status</th>
+						<th className='text-left py-3 px-4 text-blue-400'>Date</th>
 					</tr>
 				</thead>
 				<tbody>
 					{sortedSessions.map((session, index) => (
 						<tr
 							key={session.id}
-							className='border-b border-gray-800 hover:bg-gray-800/50 transition-colors'>
+							className='border-b border-gray-700 hover:bg-gray-700/50 transition-colors'>
 							<td className='py-3 px-4 text-white font-bold'>
 								{index === 0
 									? '🥇'
@@ -47,10 +47,10 @@ export default function LeaderboardTable({ sessions }: LeaderboardTableProps) {
                   px-2 py-1 rounded-full text-xs font-bold
                   ${
 										session.status === 'won'
-											? 'bg-green-500 text-white'
+											? 'bg-green-700 text-white'
 											: session.status === 'lost'
-											? 'bg-red-500 text-white'
-											: 'bg-yellow-500 text-black'
+											? 'bg-red-700 text-white'
+											: 'bg-blue-700 text-white'
 									}
                 `}>
 									{session.status.charAt(0).toUpperCase() +

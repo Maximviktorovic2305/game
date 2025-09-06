@@ -12,13 +12,13 @@ export default function Home() {
 	}
 
 	return (
-		<div className='min-h-screen bg-gradient-to-b from-blue-900 to-purple-900 flex flex-col items-center justify-center p-4'>
+		<div className='min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4'>
 			<div className='text-center max-w-2xl'>
-				<h1 className='text-4xl md:text-6xl font-bold text-yellow-400 mb-6'>
+				<h1 className='text-4xl md:text-6xl font-bold text-blue-400 mb-6'>
 					Who Wants to Be a Millionaire?
 				</h1>
 
-				<div className='bg-black/30 backdrop-blur-sm rounded-xl p-8 mb-8'>
+				<div className='bg-gray-800 rounded-xl p-8 mb-8'>
 					<p className='text-white text-lg mb-6'>
 						Test your knowledge and climb the prize ladder to win 1 million!
 					</p>
@@ -26,13 +26,13 @@ export default function Home() {
 					{!gameStarted ? (
 						<Button
 							onClick={handleStartGame}
-							className='bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-8 text-xl rounded-full transition-all duration-300 transform hover:scale-105'>
+							className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 text-xl rounded-full transition-all duration-300'>
 							Start Game
 						</Button>
 					) : (
 						<div className='space-y-4'>
 							<Link href='/game' className='block'>
-								<Button className='bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 text-xl rounded-full transition-all duration-300 transform hover:scale-105'>
+								<Button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 text-xl rounded-full transition-all duration-300'>
 									Continue to Game
 								</Button>
 							</Link>
@@ -47,7 +47,7 @@ export default function Home() {
 					<Link href='/leaderboard' className='block'>
 						<Button
 							variant='outline'
-							className='border-white text-white hover:bg-white hover:text-black'>
+							className='border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white'>
 							View Leaderboard
 						</Button>
 					</Link>

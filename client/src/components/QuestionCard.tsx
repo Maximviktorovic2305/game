@@ -43,7 +43,7 @@ export default function QuestionCard({
 			className={`flex flex-col transition-opacity duration-300 ease-in-out ${
 				isVisible ? 'opacity-100' : 'opacity-0'
 			}`}>
-			<h3 className='text-xl md:text-2xl font-bold text-white mb-4 flex-shrink-0 overflow-hidden'>
+			<h3 className='text-lg md:text-xl font-bold text-white mb-4 flex-shrink-0 overflow-hidden'>
 				{question.text}
 			</h3>
 
@@ -54,14 +54,14 @@ export default function QuestionCard({
 						onClick={() => handleOptionClick(option)}
 						disabled={removedOptions.includes(option.id)}
 						className={`
-              p-3 text-left rounded-lg transition-all duration-200 h-full
+              p-3 text-left rounded-lg transition-all duration-200 h-full text-sm
               ${
 								removedOptions.includes(option.id)
 									? 'bg-gray-700 text-gray-500 cursor-not-allowed'
 									: 'bg-blue-700 hover:bg-blue-600 text-white hover:scale-[1.02]'
 							}
             `}
-						style={{ minHeight: '60px' }}>
+						style={{ minHeight: '50px' }}>
 						<div className='flex items-center h-full'>
 							<span className='font-bold mr-2 flex-shrink-0'>
 								{option.letter}.
