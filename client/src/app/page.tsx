@@ -15,29 +15,30 @@ export default function Home() {
 		<div className='min-h-screen bg-gray-900 flex flex-col items-center justify-center p-4'>
 			<div className='text-center max-w-2xl'>
 				<h1 className='text-4xl md:text-6xl font-bold text-blue-400 mb-6'>
-					Who Wants to Be a Millionaire?
+					Кто хочет стать миллионером?
 				</h1>
 
 				<div className='bg-gray-800 rounded-xl p-8 mb-8'>
 					<p className='text-white text-lg mb-6'>
-						Test your knowledge and climb the prize ladder to win 1 million!
+						Проверьте свои знания и поднимайтесь по лестнице призов, чтобы
+						выиграть 1 миллион!
 					</p>
 
 					{!gameStarted ? (
 						<Button
 							onClick={handleStartGame}
 							className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 text-xl rounded-full transition-all duration-300'>
-							Start Game
+							Начать игру
 						</Button>
 					) : (
 						<div className='space-y-4'>
 							<Link href='/game' className='block'>
 								<Button className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 text-xl rounded-full transition-all duration-300'>
-									Continue to Game
+									Продолжить игру
 								</Button>
 							</Link>
 							<p className='text-gray-300'>
-								Click above to continue to the game screen
+								Нажмите выше, чтобы перейти к экрану игры
 							</p>
 						</div>
 					)}
@@ -48,7 +49,7 @@ export default function Home() {
 						<Button
 							variant='outline'
 							className='border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white'>
-							View Leaderboard
+							Посмотреть таблицу лидеров
 						</Button>
 					</Link>
 				</div>

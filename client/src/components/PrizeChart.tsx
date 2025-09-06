@@ -34,8 +34,7 @@ export default function PrizeChart({ currentLevel }: PrizeChartProps) {
 							py-1 px-4
 							${isCurrent ? 'text-yellow-500 font-bold' : ''}
 							${isSafe ? 'text-green-400' : 'text-white'}
-						`}
-					>
+						`}>
 						<span>${prize.amount.toLocaleString()}</span>
 					</div>
 				)

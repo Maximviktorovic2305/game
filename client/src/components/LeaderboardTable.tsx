@@ -13,15 +13,29 @@ export default function LeaderboardTable({ sessions }: LeaderboardTableProps) {
 	// Sort sessions by score descending
 	const sortedSessions = [...sessions].sort((a, b) => b.score - a.score)
 
+	// Function to get status text in Russian
+	const getStatusText = (status: string) => {
+		switch (status) {
+			case 'won':
+				return 'Выиграл'
+			case 'lost':
+				return 'Проиграл'
+			case 'quit':
+				return 'Завершил'
+			default:
+				return 'В процессе'
+		}
+	}
+
 	return (
 		<div className='overflow-x-auto'>
 			<table className='w-full'>
 				<thead>
 					<tr className='border-b border-gray-700'>
-						<th className='text-left py-3 px-4 text-blue-400'>Rank</th>
-						<th className='text-left py-3 px-4 text-blue-400'>Score</th>
-						<th className='text-left py-3 px-4 text-blue-400'>Status</th>
-						<th className='text-left py-3 px-4 text-blue-400'>Date</th>
+						<th className='text-left py-3 px-4 text-blue-400'>Место</th>
+						<th className='text-left py-3 px-4 text-blue-400'>Счет</th>
+						<th className='text-left py-3 px-4 text-blue-400'>Статус</th>
+						<th className='text-left py-3 px-4 text-blue-400'>Дата</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,12 +67,11 @@ export default function LeaderboardTable({ sessions }: LeaderboardTableProps) {
 											: 'bg-blue-700 text-white'
 									}
                 `}>
-									{session.status.charAt(0).toUpperCase() +
-										session.status.slice(1)}
+									{getStatusText(session.status)}
 								</span>
 							</td>
 							<td className='py-3 px-4 text-gray-300'>
-								{new Date(session.start_time).toLocaleDateString()}
+								{new Date(session.start_time).toLocaleDateString('ru-RU')}
 							</td>
 						</tr>
 					))}

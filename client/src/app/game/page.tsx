@@ -215,7 +215,7 @@ export default function GamePage() {
 	if (!gameSession) {
 		return (
 			<div className='min-h-screen bg-gray-900 flex items-center justify-center'>
-				<p className='text-white text-xl'>Starting game...</p>
+				<p className='text-white text-xl'>Начало игры...</p>
 			</div>
 		)
 	}
@@ -238,7 +238,7 @@ export default function GamePage() {
 										: 'bg-blue-600 text-white hover:bg-blue-500'
 								}
 							`}
-							title='50:50 Lifeline'>
+							title='Подсказка 50:50'>
 							<FiftyFiftyIcon />
 						</button>
 
@@ -253,7 +253,7 @@ export default function GamePage() {
 										: 'bg-blue-600 text-white hover:bg-blue-500'
 								}
 							`}
-							title='Ask the Audience'>
+							title='Помощь зала'>
 							<AudienceIcon />
 						</button>
 
@@ -268,7 +268,7 @@ export default function GamePage() {
 										: 'bg-blue-600 text-white hover:bg-blue-500'
 								}
 							`}
-							title='Phone a Friend'>
+							title='Звонок другу'>
 							<CallIcon />
 						</button>
 					</div>
@@ -277,7 +277,7 @@ export default function GamePage() {
 					<div className='absolute inset-0 flex items-center justify-center z-0'>
 						<img
 							src='/logo.webp'
-							alt='Who Wants to Be a Millionaire Logo'
+							alt='Логотип Кто хочет стать миллионером?'
 							className='w-120 h-120 object-contain'
 						/>
 					</div>
@@ -289,15 +289,13 @@ export default function GamePage() {
 				</div>
 
 				{/* Question area at the bottom */}
-				<div
-					className='bg-gray-800 rounded-t-xl p-4'
-					>
+				<div className='bg-gray-800 rounded-t-xl p-4'>
 					<div className='flex justify-between items-center mb-4'>
 						<h2 className='text-xl font-bold text-blue-400'>
-							Question {gameSession.current_level}
+							Вопрос {gameSession.current_level}
 						</h2>
 						<div className='text-lg font-bold text-white'>
-							Score: ${gameSession.score.toLocaleString()}
+							Счет: ${gameSession.score.toLocaleString()}
 						</div>
 					</div>
 
@@ -329,7 +327,7 @@ export default function GamePage() {
 				<div className='fixed inset-0 bg-black/70 flex items-center justify-center z-50'>
 					<div className='bg-gray-800 rounded-xl p-6 max-w-md w-full mx-4 border-2 border-blue-500'>
 						<h3 className='text-2xl font-bold mb-4 text-center text-blue-400'>
-							Audience Poll
+							Опрос зала
 						</h3>
 						<div className='space-y-4'>
 							{Object.entries(audiencePercentages).map(
@@ -352,7 +350,7 @@ export default function GamePage() {
 							<button
 								onClick={handleCloseModals}
 								className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full'>
-								Close
+								Закрыть
 							</button>
 						</div>
 					</div>
@@ -363,14 +361,14 @@ export default function GamePage() {
 				<div className='fixed inset-0 bg-black/70 flex items-center justify-center z-50'>
 					<div className='bg-gray-800 rounded-xl p-6 max-w-md w-full mx-4 border-2 border-blue-500'>
 						<h3 className='text-2xl font-bold mb-4 text-center text-blue-400'>
-							Friend&apos;s Advice
+							Совет друга
 						</h3>
 						<p className='text-lg mb-6 text-center text-white'>{callAdvice}</p>
 						<div className='text-center'>
 							<button
 								onClick={handleCloseModals}
 								className='bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full'>
-								Close
+								Закрыть
 							</button>
 						</div>
 					</div>

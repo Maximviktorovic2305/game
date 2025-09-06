@@ -22,28 +22,28 @@ export default function LeaderboardPage() {
 			<div className='max-w-4xl mx-auto'>
 				<div className='text-center mb-8'>
 					<h1 className='text-3xl md:text-4xl font-bold text-blue-400 mb-2'>
-						Leaderboard
+						Таблица лидеров
 					</h1>
-					<p className='text-white'>
-						Top players who reached the highest scores
-					</p>
+					<p className='text-white'>Лучшие игроки, набравшие highest scores</p>
 				</div>
 
 				<div className='bg-gray-800 rounded-xl p-6'>
 					{isLoading ? (
 						<div className='text-center py-12'>
-							<p className='text-white text-xl'>Loading leaderboard...</p>
+							<p className='text-white text-xl'>Загрузка таблицы лидеров...</p>
 						</div>
 					) : error ? (
 						<div className='text-center py-12'>
-							<p className='text-red-400 text-xl'>Error loading leaderboard</p>
+							<p className='text-red-400 text-xl'>
+								Ошибка загрузки таблицы лидеров
+							</p>
 						</div>
 					) : serializableLeaderboard && serializableLeaderboard.length > 0 ? (
 						<LeaderboardTable sessions={serializableLeaderboard} />
 					) : (
 						<div className='text-center py-12'>
 							<p className='text-white text-xl'>
-								No scores yet. Be the first to play!
+								Пока нет результатов. Будьте первым!
 							</p>
 						</div>
 					)}
@@ -53,7 +53,7 @@ export default function LeaderboardPage() {
 					<Link
 						href='/'
 						className='inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-colors'>
-						Back to Home
+						Назад на главную
 					</Link>
 				</div>
 			</div>

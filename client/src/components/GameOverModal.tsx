@@ -15,26 +15,26 @@ export default function GameOverModal({
 		switch (status) {
 			case 'won':
 				return {
-					title: 'Congratulations!',
-					message: `You've won $${score.toLocaleString()}!`,
+					title: 'Поздравляем!',
+					message: `Вы выиграли $${score.toLocaleString()}!`,
 					color: 'text-green-500',
 				}
 			case 'lost':
 				return {
-					title: 'Game Over',
-					message: `The correct answer was... Your score: $${score.toLocaleString()}`,
+					title: 'Игра окончена',
+					message: `Правильный ответ был... Ваш счет: $${score.toLocaleString()}`,
 					color: 'text-red-500',
 				}
 			case 'quit':
 				return {
-					title: 'Game Quit',
-					message: `You quit the game with $${score.toLocaleString()}`,
+					title: 'Игра завершена',
+					message: `Вы завершили игру с $${score.toLocaleString()}`,
 					color: 'text-yellow-500',
 				}
 			default:
 				return {
-					title: 'Game Over',
-					message: `Game finished with score: $${score.toLocaleString()}`,
+					title: 'Игра окончена',
+					message: `Игра завершена со счетом: $${score.toLocaleString()}`,
 					color: 'text-white',
 				}
 		}
@@ -54,13 +54,13 @@ export default function GameOverModal({
 					<button
 						onClick={() => window.location.reload()}
 						className='w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-colors'>
-						Play Again
+						Играть снова
 					</button>
 
 					<Link
 						href='/'
 						className='block w-full bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-full transition-colors text-center'>
-						Back to Home
+						Назад на главную
 					</Link>
 				</div>
 			</div>
