@@ -48,28 +48,20 @@ func (s *GameService) AnswerQuestion(sessionID uint, questionID uint, selectedOp
 		return false, nil, err
 	}
 
-	question, err := s.questionRepo.GetQuestionByLevel(session.CurrentLevel)
+	// Instead of validating against a specific question, we just need to verify
+	// that the selected option exists and belongs to a question from the current level
+	selectedOption, err := s.sessionRepo.ValidateOption(selectedOptionID, int(session.CurrentLevel))
 	if err != nil {
-		return false, nil, err
-	}
-
-	if question.ID != questionID {
-		return false, nil, gorm.ErrRecordNotFound
-	}
-
-	var selectedOption models.Option
-	for _, option := range question.Options {
-		if option.ID == selectedOptionID {
-			selectedOption = option
-			break
-		}
-	}
-
-	if selectedOption.ID == 0 {
 		return false, nil, gorm.ErrRecordNotFound
 	}
 
 	isCorrect := selectedOption.IsCorrect
+
+	// Get the question for scoring purposes
+	question, err := s.sessionRepo.GetQuestionByID(selectedOption.QuestionID)
+	if err != nil {
+		return false, nil, err
+	}
 
 	// Update session based on answer
 	if isCorrect {
@@ -109,12 +101,14 @@ func (s *GameService) UseFiftyFifty(sessionID uint, questionID uint) ([]models.O
 		return nil, gorm.ErrRecordNotFound
 	}
 
-	question, err := s.questionRepo.GetQuestionByLevel(session.CurrentLevel)
+	// Get the specific question by ID to ensure consistency with what the user sees
+	question, err := s.questionRepo.GetQuestionByID(questionID)
 	if err != nil {
 		return nil, err
 	}
 
-	if question.ID != questionID {
+	// Verify that the question is from the current level
+	if question.Level != int(session.CurrentLevel) {
 		return nil, gorm.ErrRecordNotFound
 	}
 
@@ -156,12 +150,14 @@ func (s *GameService) UseAudience(sessionID uint, questionID uint) (map[string]i
 		return nil, gorm.ErrRecordNotFound
 	}
 
-	question, err := s.questionRepo.GetQuestionByLevel(session.CurrentLevel)
+	// Get the specific question by ID to ensure consistency with what the user sees
+	question, err := s.questionRepo.GetQuestionByID(questionID)
 	if err != nil {
 		return nil, err
 	}
 
-	if question.ID != questionID {
+	// Verify that the question is from the current level
+	if question.Level != int(session.CurrentLevel) {
 		return nil, gorm.ErrRecordNotFound
 	}
 
@@ -213,12 +209,14 @@ func (s *GameService) UseCall(sessionID uint, questionID uint) (string, error) {
 		return "", gorm.ErrRecordNotFound
 	}
 
-	question, err := s.questionRepo.GetQuestionByLevel(session.CurrentLevel)
+	// Get the specific question by ID to ensure consistency with what the user sees
+	question, err := s.questionRepo.GetQuestionByID(questionID)
 	if err != nil {
 		return "", err
 	}
 
-	if question.ID != questionID {
+	// Verify that the question is from the current level
+	if question.Level != int(session.CurrentLevel) {
 		return "", gorm.ErrRecordNotFound
 	}
 

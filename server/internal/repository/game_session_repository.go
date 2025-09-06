@@ -39,3 +39,23 @@ func (r *GameSessionRepository) GetLeaderboard() ([]models.GameSession, error) {
 		Find(&sessions).Error
 	return sessions, err
 }
+
+// ValidateOption checks if an option exists and belongs to a question from the specified level
+func (r *GameSessionRepository) ValidateOption(optionID uint, level int) (*models.Option, error) {
+	var option models.Option
+	err := r.db.Where("id = ? AND question_id IN (SELECT id FROM questions WHERE level = ?)", optionID, level).First(&option).Error
+	if err != nil {
+		return nil, err
+	}
+	return &option, nil
+}
+
+// GetQuestionByID fetches a question by its ID
+func (r *GameSessionRepository) GetQuestionByID(id uint) (*models.Question, error) {
+	var question models.Question
+	err := r.db.First(&question, id).Error
+	if err != nil {
+		return nil, err
+	}
+	return &question, nil
+}

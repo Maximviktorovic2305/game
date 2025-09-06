@@ -16,7 +16,17 @@ func NewQuestionRepository(db *gorm.DB) *QuestionRepository {
 
 func (r *QuestionRepository) GetQuestionByLevel(level int) (*models.Question, error) {
 	var question models.Question
-	err := r.db.Where("level = ?", level).Preload("Options").First(&question).Error
+	// Fetch a random question for the given level
+	err := r.db.Where("level = ?", level).Preload("Options").Order("RANDOM()").First(&question).Error
+	if err != nil {
+		return nil, err
+	}
+	return &question, nil
+}
+
+func (r *QuestionRepository) GetQuestionByID(id uint) (*models.Question, error) {
+	var question models.Question
+	err := r.db.Where("id = ?", id).Preload("Options").First(&question).Error
 	if err != nil {
 		return nil, err
 	}
