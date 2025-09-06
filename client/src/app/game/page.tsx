@@ -170,7 +170,9 @@ export default function GamePage() {
 
 					{/* Main Game Area */}
 					<div className='w-full lg:w-3/4'>
-						<div className='bg-black/30 backdrop-blur-sm rounded-xl p-6 mb-6 min-h-[400px]'>
+						<div
+							className='bg-black/30 backdrop-blur-sm rounded-xl p-6 mb-6'
+							style={{ minHeight: '300px' }}>
 							<div className='flex justify-between items-center mb-6'>
 								<h2 className='text-2xl font-bold text-yellow-400'>
 									Question {gameSession.current_level}
@@ -180,13 +182,19 @@ export default function GamePage() {
 								</div>
 							</div>
 
-							{currentQuestion && 
+							{currentQuestion ? (
 								<QuestionCard
 									question={currentQuestion}
 									onAnswer={handleAnswer}
 									removedOptions={removedOptions}
 								/>
-							}
+							) : (
+								<div className='flex flex-col transition-opacity duration-300 ease-in-out opacity-0'>
+									<div className='space-y-6'>
+										{/* Empty div to maintain layout consistency */}
+									</div>
+								</div>
+							)}
 						</div>
 
 						{/* Lifeline Panel */}
