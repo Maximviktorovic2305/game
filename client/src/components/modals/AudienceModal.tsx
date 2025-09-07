@@ -3,7 +3,10 @@ interface AudienceModalProps {
 	onClose: () => void
 }
 
-export default function AudienceModal({ percentages, onClose }: AudienceModalProps) {
+export default function AudienceModal({
+	percentages,
+	onClose,
+}: AudienceModalProps) {
 	return (
 		<div className='fixed inset-0 bg-black/70 flex items-center justify-center z-50'>
 			<div className='bg-gray-800 rounded-xl p-6 max-w-md w-full mx-4 border-2 border-blue-500'>

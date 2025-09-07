@@ -1,54 +1,25 @@
 import { ButtonHTMLAttributes } from 'react'
+import { DiamondPercent } from 'lucide-react'
 
-interface FiftyFiftyButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface FiftyFiftyButtonProps
+	extends ButtonHTMLAttributes<HTMLButtonElement> {
 	used: boolean
 }
 
 export function FiftyFiftyIcon() {
 	return (
-		<svg
-			xmlns='http://www.w3.org/2000/svg'
-			viewBox='0 0 48 48'
-			className='w-12 h-12'>
-			{/* Background circle */}
-			<circle
-				cx='24'
-				cy='24'
-				r='22'
-				fill='#3b82f6'
-			/>
-			<circle
-				cx='24'
-				cy='24'
-				r='18'
-				fill='#1d4ed8'
-			/>
-			{/* 50/50 text with better styling */}
-			<text
-				x='24'
-				y='29'
-				textAnchor='middle'
-				fill='white'
-				fontSize='18'
-				fontWeight='bold'
-				fontFamily='Arial, sans-serif'>
-				50
-			</text>
-			<text
-				x='24'
-				y='35'
-				textAnchor='middle'
-				fill='white'
-				fontSize='10'
-				fontWeight='bold'
-				fontFamily='Arial, sans-serif'>
-				50
-			</text>
-		</svg>
+		<div className='w-6 h-6 flex items-center justify-center cursor-pointer'>
+			<div className='relative'>
+				<DiamondPercent className='relative w-5 h-5 text-white' />
+			</div>
+		</div>
 	)
 }
 
-export default function FiftyFiftyButton({ used, ...props }: FiftyFiftyButtonProps) {
+export default function FiftyFiftyButton({
+	used,
+	...props
+}: FiftyFiftyButtonProps) {
 	return (
 		<button
 			{...props}

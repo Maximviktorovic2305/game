@@ -28,7 +28,8 @@ export default function PrizeChart({ currentLevel }: PrizeChartProps) {
 				// Текущий уровень
 				const isCurrent = prize.level === currentLevel
 				// Уровни безопасности
-				const isSafe = prize.level === 5 || prize.level === 10 || prize.level === 15
+				const isSafe =
+					prize.level === 5 || prize.level === 10 || prize.level === 15
 
 				return (
 					<div
