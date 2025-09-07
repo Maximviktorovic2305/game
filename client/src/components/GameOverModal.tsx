@@ -52,7 +52,7 @@ export default function GameOverModal({
 
 				<div className='space-y-4'>
 					<button
-						onClick={() => window.location.reload()}
+						onClick={onClose}
 						className='w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full transition-colors'>
 						Играть снова
 					</button>

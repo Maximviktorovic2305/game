@@ -1,3 +1,4 @@
+// Призы для каждого уровня игры
 const PRIZES = [
 	{ level: 1, amount: 100 },
 	{ level: 2, amount: 200 },
@@ -24,7 +25,9 @@ export default function PrizeChart({ currentLevel }: PrizeChartProps) {
 	return (
 		<div className='h-full flex w-fit flex-col justify-center'>
 			{[...PRIZES].reverse().map((prize) => {
+				// Текущий уровень
 				const isCurrent = prize.level === currentLevel
+				// Уровни безопасности
 				const isSafe = prize.level === 5 || prize.level === 10 || prize.level === 15
 
 				return (

@@ -238,17 +238,17 @@ func (s *GameService) UseCall(sessionID uint, questionID uint) (string, error) {
 
 	// High probability of correct answer
 	if rand.Intn(100) < 80 { // 80% chance of correct advice
-		return "I'm pretty sure the answer is " + correctOption.Letter + ": " + correctOption.Text, nil
+		return "Я почти уверен, что правильный ответ " + correctOption.Letter + ": " + correctOption.Text, nil
 	} else {
 		// 20% chance of incorrect advice
 		for _, option := range question.Options {
 			if !option.IsCorrect {
-				return "I think the answer might be " + option.Letter + ": " + option.Text, nil
+				return "Я думаю, ответ может быть " + option.Letter + ": " + option.Text, nil
 			}
 		}
 	}
 
-	return "I'm not sure, but I would guess " + correctOption.Letter, nil
+	return "Я не совсем уверен, но я бы отгадал " + correctOption.Letter, nil
 }
 
 func (s *GameService) QuitGame(sessionID uint) (*models.GameSession, error) {

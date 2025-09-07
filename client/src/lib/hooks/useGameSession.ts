@@ -11,18 +11,20 @@ import {
 	getLeaderboard,
 } from '@/lib/api/gameApi'
 
+// Хук для начала новой игры
 export const useStartGame = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
 		mutationFn: startGame,
 		onSuccess: (data) => {
-			// Store session in cache
+			// Сохранение сессии в кэше
 			queryClient.setQueryData(['gameSession', data.session.id], data.session)
 		},
 	})
 }
 
+// Хук для получения сессии игры
 export const useGameSession = (sessionId: number | null) => {
 	return useQuery({
 		queryKey: ['gameSession', sessionId],
@@ -34,6 +36,7 @@ export const useGameSession = (sessionId: number | null) => {
 	})
 }
 
+// Хук для получения следующего вопроса
 export const useNextQuestion = (level: number) => {
 	return useQuery({
 		queryKey: ['question', level],
@@ -42,18 +45,20 @@ export const useNextQuestion = (level: number) => {
 	})
 }
 
+// Хук для ответа на вопрос
 export const useAnswerQuestion = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
 		mutationFn: answerQuestion,
 		onSuccess: (data) => {
-			// Update session in cache
+			// Обновление сессии в кэше
 			queryClient.setQueryData(['gameSession', data.session.id], data.session)
 		},
 	})
 }
 
+// Хук для использования подсказки 50:50
 export const useFiftyFiftyLifeline = () => {
 	return useMutation({
 		mutationFn: ({
@@ -66,6 +71,7 @@ export const useFiftyFiftyLifeline = () => {
 	})
 }
 
+// Хук для использования подсказки "Помощь зала"
 export const useAudienceLifeline = () => {
 	return useMutation({
 		mutationFn: ({
@@ -78,6 +84,7 @@ export const useAudienceLifeline = () => {
 	})
 }
 
+// Хук для использования подсказки "Звонок другу"
 export const useCallLifeline = () => {
 	return useMutation({
 		mutationFn: ({
@@ -90,18 +97,20 @@ export const useCallLifeline = () => {
 	})
 }
 
+// Хук для завершения игры
 export const useQuitGame = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation({
 		mutationFn: quitGame,
 		onSuccess: (data) => {
-			// Update session in cache
+			// Обновление сессии в кэше
 			queryClient.setQueryData(['gameSession', data.id], data)
 		},
 	})
 }
 
+// Хук для получения таблицы лидеров
 export const useLeaderboard = () => {
 	return useQuery({
 		queryKey: ['leaderboard'],

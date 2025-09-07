@@ -15,25 +15,25 @@ export default function QuestionCard({
 	const [isVisible, setIsVisible] = useState(false)
 
 	useEffect(() => {
-		// Trigger fade-in animation when component mounts
+		// Запуск анимации появления при монтировании компонента
 		setIsVisible(true)
 
-		// Clean up for next transition
+		// Очистка для следующего перехода
 		return () => setIsVisible(false)
 	}, [])
 
 	const handleOptionClick = (option: Option) => {
-		// Don't allow clicking on removed options
+		// Запрет нажатия на удаленные варианты
 		if (removedOptions.includes(option.id)) return
 
-		// Trigger fade-out animation before answering
+		// Запуск анимации исчезновения перед ответом
 		setIsVisible(false)
 		setTimeout(() => {
 			onAnswer(option)
-		}, 150) // Match the animation duration
+		}, 150) // Соответствие продолжительности анимации
 	}
 
-	// Sort options by letter (A, B, C, D)
+	// Сортировка вариантов по букве (A, B, C, D)
 	const sortedOptions = [...question.options].sort((a, b) =>
 		a.letter.localeCompare(b.letter),
 	)

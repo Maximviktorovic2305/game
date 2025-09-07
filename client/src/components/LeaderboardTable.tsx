@@ -10,10 +10,10 @@ interface LeaderboardTableProps {
 }
 
 export default function LeaderboardTable({ sessions }: LeaderboardTableProps) {
-	// Sort sessions by score descending
+	// Сортировка сессий по убыванию счета
 	const sortedSessions = [...sessions].sort((a, b) => b.score - a.score)
 
-	// Function to get status text in Russian
+	// Функция для получения текста статуса на русском языке
 	const getStatusText = (status: string) => {
 		switch (status) {
 			case 'won':

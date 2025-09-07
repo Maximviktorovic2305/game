@@ -10,12 +10,15 @@ import {
 	LeaderboardEntry,
 } from '@/types'
 
-// Game API functions
+// Функции API игры
+
+// Начало новой игры
 export const startGame = async (): Promise<StartGameResponse> => {
 	const response = await apiClient.post<StartGameResponse>('/game/start')
 	return response.data
 }
 
+// Получение сессии игры
 export const getGameSession = async (
 	sessionId: number,
 ): Promise<GameSession> => {
@@ -25,11 +28,13 @@ export const getGameSession = async (
 	return response.data
 }
 
+// Получение следующего вопроса
 export const getNextQuestion = async (level: number) => {
 	const response = await apiClient.get(`/questions/next?level=${level}`)
 	return response.data
 }
 
+// Ответ на вопрос
 export const answerQuestion = async (
 	data: AnswerRequest,
 ): Promise<AnswerResponse> => {
@@ -37,6 +42,7 @@ export const answerQuestion = async (
 	return response.data
 }
 
+// Использование подсказки 50:50
 export const useFiftyFifty = async (
 	sessionID: number,
 	questionID: number,
@@ -51,6 +57,7 @@ export const useFiftyFifty = async (
 	return response.data
 }
 
+// Использование подсказки "Помощь зала"
 export const useAudience = async (
 	sessionID: number,
 	questionID: number,
@@ -65,6 +72,7 @@ export const useAudience = async (
 	return response.data
 }
 
+// Использование подсказки "Звонок другу"
 export const useCall = async (
 	sessionID: number,
 	questionID: number,
@@ -76,11 +84,13 @@ export const useCall = async (
 	return response.data
 }
 
+// Завершение игры
 export const quitGame = async (sessionID: number): Promise<GameSession> => {
 	const response = await apiClient.post<GameSession>(`/game/quit/${sessionID}`)
 	return response.data
 }
 
+// Получение таблицы лидеров
 export const getLeaderboard = async (): Promise<LeaderboardEntry[]> => {
 	const response = await apiClient.get<LeaderboardEntry[]>('/leaderboard')
 	return response.data

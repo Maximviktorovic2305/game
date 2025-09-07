@@ -8,7 +8,7 @@ import Link from 'next/link'
 export default function LeaderboardPage() {
 	const { data: leaderboard, isLoading, error } = useLeaderboard()
 
-	// Transform the leaderboard data to only include serializable properties
+	// Преобразование данных таблицы лидеров для включения только сериализуемых свойств
 	const serializableLeaderboard =
 		leaderboard?.map((session: LeaderboardEntry) => ({
 			id: session.id,

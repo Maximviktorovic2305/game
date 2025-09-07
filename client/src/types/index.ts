@@ -1,3 +1,4 @@
+// Вариант ответа на вопрос
 export interface Option {
 	id: number
 	question_id: number
@@ -6,6 +7,7 @@ export interface Option {
 	is_correct: boolean
 }
 
+// Вопрос игры
 export interface Question {
 	id: number
 	text: string
@@ -14,12 +16,14 @@ export interface Question {
 	options: Option[]
 }
 
+// Подсказки
 export interface Lifelines {
 	fifty_fifty: boolean
 	audience: boolean
 	call: boolean
 }
 
+// Сессия игры
 export interface GameSession {
 	id: number
 	current_level: number
@@ -30,6 +34,7 @@ export interface GameSession {
 	end_time?: string
 }
 
+// Запись в таблице лидеров
 export interface LeaderboardEntry {
 	id: number
 	score: number
@@ -37,29 +42,35 @@ export interface LeaderboardEntry {
 	start_time: string
 }
 
+// Ответ на начало игры
 export interface StartGameResponse {
 	session: GameSession
 }
 
+// Запрос на ответ
 export interface AnswerRequest {
 	session_id: number
 	question_id: number
 	option_id: number
 }
 
+// Ответ на запрос
 export interface AnswerResponse {
 	correct: boolean
 	session: GameSession
 }
 
+// Ответ 50:50
 export interface FiftyFiftyResponse {
 	removed_options: Option[]
 }
 
+// Ответ аудитории
 export interface AudienceResponse {
 	percentages: Record<string, number>
 }
 
+// Ответ звонка другу
 export interface CallResponse {
 	advice: string
 }

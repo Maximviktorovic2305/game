@@ -8,6 +8,7 @@ export default function Home() {
 	const [gameStarted, setGameStarted] = useState(false)
 
 	const handleStartGame = () => {
+		// Установка состояния начала игры
 		setGameStarted(true)
 	}
 
